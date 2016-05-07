@@ -199,9 +199,9 @@ var vrniRacune = function(callback) {
 streznik.post('/prijava', function(zahteva, odgovor) {
   var form = new formidable.IncomingForm();
   
-  var msgU="";
   form.parse(zahteva, function (napaka1, polja, datoteke) {
     var napaka2 = false;
+    var msgU="";
     try {
       var stmt = pb.prepare("\
         INSERT INTO Customer \
