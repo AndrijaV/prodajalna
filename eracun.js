@@ -156,7 +156,7 @@ streznik.post('/izpisiRacunBaza', function(zahteva, odgovor) {
         if (napakaS || napakaP) {
           odgovor.sendStatus(500);
         } else if (pesmi.length == 0) {
-          odgovor.send("");
+          odgovor.send("V košarici nimate nobene pesmi, zato računa ni mogoče pripraviti!");
         } else {
           odgovor.setHeader('content-type', 'text/xml');
           odgovor.render('eslog', {vizualiziraj: true, postavkeRacuna: pesmi, Kupec: kupec});
