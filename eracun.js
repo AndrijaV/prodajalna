@@ -215,9 +215,10 @@ streznik.post('/prijava', function(zahteva, odgovor) {
       msgU="Stranka je bila uspešno registrirana.";
     } catch (err) {
       napaka2 = true;
+    }
+    if(napaka1 || napaka2){
       msgU="Prišlo je do napake pri registraciji nove stranke. Prosim preverite vnešene podatke in poskusite znova.";
     }
-    
     vrniStranke(function (napaka1, stranke) {
  			vrniRacune(function (napaka2, racuni) {
  				odgovor.render('prijava', { sporocilo: msgU, seznamStrank: stranke, seznamRacunov: racuni });
