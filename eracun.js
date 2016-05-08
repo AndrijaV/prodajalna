@@ -171,7 +171,7 @@ streznik.post('/izpisiRacunBaza', function(zahteva, odgovor) {
         if (napakaS || napakaP) {
           odgovor.sendStatus(500);
         } else if (pesmi.length == 0) {
-          odgovor.send("");
+          odgovor.send("V košarici nimate nobene pesmi, zato računa ni mogoče pripraviti!");
         } else {
           odgovor.setHeader('content-type', 'text/xml');
           odgovor.render('eslog', {vizualiziraj: true, postavkeRacuna: pesmi, Kupec: kupec});
@@ -249,9 +249,10 @@ streznik.post('/prijava', function(zahteva, odgovor) {
       msgU="Stranka je bila uspešno registrirana.";
     } catch (err) {
       napaka2 = true;
-      msgU="Prišlo je do napake pri registraciji nove stranke. Prosim preverite vnešene podatke in poskusite znova.";
     }
-    
+    if(napaka1 || napaka2){
+        msgU="Prišlo je do napake pri registraciji nove stranke. Prosim preverite vnešene podatke in poskusite znova.";
+      }
     vrniStranke(function (napaka1, stranke) {
  			vrniRacune(function (napaka2, racuni) {
  				odgovor.render('prijava', { sporocilo: msgU, seznamStrank: stranke, seznamRacunov: racuni });
